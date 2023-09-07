@@ -27,3 +27,6 @@ def show(request):
     res = HttpResponse();
     res.write("Showing an instructor")
     return res;
+
+
+# git remote set-url origin https://mohanned_war@github.com/mohanned_war/I-can-be-polite-one-time-but-not-get-told-twice.git
