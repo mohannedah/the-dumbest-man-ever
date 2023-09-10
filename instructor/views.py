@@ -1,12 +1,17 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from .models import Instructor;
 
 
 def insert(request):
-    res = HttpResponse();
-    res.write("Inserting an instructor");
-    return res;
+    obj = request.POST;
+    if request.method == 'GET':
+        return render(request, 'register.html');    
+    instructor = Instructor();
+    instructor.name = obj['username']
+    instructor.password = obj['password'];
+    instructor.save();
+    return render(request, 'register.html');
 
 
 
@@ -29,4 +34,3 @@ def show(request):
     return res;
 
 
-# git remote set-url origin https://mohanned_war@github.com/mohanned_war/I-can-be-polite-one-time-but-not-get-told-twice.git

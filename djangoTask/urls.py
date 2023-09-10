@@ -20,6 +20,7 @@ from django.urls import path
 import trainee.views;
 
 import instructor.views;
+import login.views;
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,4 +34,8 @@ urlpatterns = [
     path('instructor/update', instructor.views.update, name = 'update'),
     path('instructor/delete', instructor.views.delete, name = 'delete'),
     path('instructor/show', instructor.views.show, name = 'show'),
+    
+    
+    path('userr/login', login.views.login, name = 'login'),
+    path('userr/register', login.views.register, name = 'register'),
 ]
