@@ -3,6 +3,9 @@ from django.shortcuts import render
 from .models import Instructor;
 
 
+def homepage(request):
+    return render(request, 'base.html');
+
 def insert(request):
     obj = request.POST;
     if request.method == 'GET':
@@ -14,7 +17,18 @@ def insert(request):
     return render(request, 'register.html');
 
 
+def login(request):
+    obj = request.POST;
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    
+    instructor = Instructor.objects.get(name = obj['username'], password = obj['password']);
+    
+    if instructor is None:
+        return render(request, 'login.html')
 
+    return render(request, 'base.html');
+        
 
 def delete(request):
     res = HttpResponse()
@@ -29,8 +43,8 @@ def update(request):
 
 
 def show(request):
-    res = HttpResponse();
-    res.write("Showing an instructor")
-    return res;
+    objects = Instructor.objects.all();
+    context = {'Instructors': objects};
+    return render(request, 'listingAllInstructors.html', context)
 
 

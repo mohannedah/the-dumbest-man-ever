@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Title of the document</title>
+</head>
+
+<body>
+    <table>
+        <tr>
+          <th>Name</th>
+          <th>Id</th>
+        </tr>
+        {%for obj in Instructors%}
+        <tr>
+            <td>{{obj.name}}</td>
+            <td>{{obj.id}}</td>
+          </tr>
+        {%endfor%}
+      </table>
+</body>
+
+</html>

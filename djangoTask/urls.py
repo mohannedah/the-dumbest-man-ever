@@ -24,18 +24,17 @@ import login.views;
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('trainee/insert', trainee.views.insert, name = 'insert'),
-    path('trainee/update', trainee.views.update, name = 'update'),
-    path('trainee/delete', trainee.views.delete, name = 'delete'),
-    path('trainee/show', trainee.views.show, name = 'show'),
+    path('', instructor.views.homepage, name='home'),
+    path('trainee/insert', trainee.views.insert, name = 'insertTrainee'),
+    path('trainee/update/<int:id>', trainee.views.update, name = 'updateTrainee'),
+    path('trainee/delete/<int:id>', trainee.views.delete, name = 'deleteTrainee'),
+    path('trainee/show', trainee.views.show, name = 'showTrainee'),
     
     
-    path('instructor/insert', instructor.views.insert, name = 'insert'),
-    path('instructor/update', instructor.views.update, name = 'update'),
-    path('instructor/delete', instructor.views.delete, name = 'delete'),
-    path('instructor/show', instructor.views.show, name = 'show'),
+    path('instructor/insert', instructor.views.insert, name = 'insertInstructor'),
+    path('instructor/update', instructor.views.update, name = 'updateInstructor'),
+    path('instructor/delete', instructor.views.delete, name = 'deleteInstructor'),
+    path('instructor/show', instructor.views.show, name = 'showInstructor'),
     
     
-    path('userr/login', login.views.login, name = 'login'),
-    path('userr/register', login.views.register, name = 'register'),
 ]

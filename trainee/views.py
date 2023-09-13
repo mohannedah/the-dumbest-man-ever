@@ -1,29 +1,45 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from .models import Trainee, Track;
 
 
 def insert(request):
-    res = HttpResponse();
-    res.write("Inserting a trainee");
-    return res;
+    if request.method == "GET":
+        tracks = Track.objects.all();
+        return render(request, 'insertTrainee.html', {'tracks': tracks});
+    
+    obj = request.POST;
+    trainee = Trainee();
+    
+    trainee.name = obj["name"];
+    trainee.track = Track.objects.get(id = obj["track"]);
+    trainee.save();
+    return render(request, 'base.html');
 
 
 
 
-def delete(request):
-    res = HttpResponse()
-    res.write("Deleting a trainee");
-    return res;
+def delete(request, id):
+    Trainee.objects.get(id=id).delete();
+    trainees = Trainee.objects.all();
+    return render(request, 'listTrainees.html', {'trainees': trainees});
 
 
-def update(request):
-    res = HttpResponse();
-    res.write("Updating a trainee");
-    return res;
+def update(request, id):
+    trainee =  Trainee.objects.get(id = id);
+    tracks = Track.objects.all();
+    print([trainee.track])
+    if request.method == "GET":
+        return render(request, 'updateTrainee.html', {"trainee": trainee, "tracks": tracks});
+    obj = request.POST;
+    trainee.name = obj["name"];
+    trainee.track = Track.objects.get(id = obj["track"]);
+    trainee.save(); 
+    return render(request, 'base.html');
 
 
 def show(request):
-    res = HttpResponse();
-    res.write("Showing a trainee")
-    return res;
+    trainees = Trainee.objects.all();
+    context = {"trainees": trainees};
+    return render(request, 'listTrainees.html', context);
+

@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+
+
+{%block content%}
+<h4>Trainees</h4>
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">Basic Table</div>
+    </div>
+    <div class="card-body">
+        <div class="card-sub">									
+            All Trainees
+        </div>
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Track</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+               {%for obj in trainees%}
+               <tr>
+                <td>{{obj.id}}</td>
+                <td>{{obj.name}}</td>
+                <td>{{obj.track}}</td>
+                <td><a class="btn btn-success" href= {%url 'updateTrainee' obj.id%}> Update </a></td>
+                <td><a class="btn btn-danger" href= {%url 'deleteTrainee' obj.id%}> Delete </a></td>
+            </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+    </div>
+{%endblock content%}
